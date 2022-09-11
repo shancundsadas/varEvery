@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+		</style>
+	</head>
+	<body>
+		<h1 onclick="BF.postData()">这是一个测试 VarEvery-script.js</h1>
+		<div id="cs">这是一个测试</div>
+		<div class="myBottom" style="width: 100%; height:1000px;background-color: antiquewhite;">
+		</div>
+	</body>
+	<script>
+		var BF = new VarEvery({
+			data: {
+				name: '小张',
+				data: '你好'
+			},
+			async mounted() {
+				// 生成dom
+				
+				// 同步等待 下滑到底部
+				let next = await this.slideDomDownSync('.myBottom')
+				// console.log()
+				setTimeout(() => {
+					this.generateDOM({
+						id: "myClassDom",
+						template: `<div class='myClass' onclick="BF.postData()">{{ name }}</div>{{ name }}<div class='myClass'>{{ data }}</div>`,
+						style: `.myClass {font-size: 30px;font-weight: 700;color: aqua;}`
+					})
+				},5000)
+				let dom = await this.ifExistSync('#myClassDom')
+				console.log('??',dom)
+				console.log('获取的dom:',this.$('#myClassDom'))
+			},
+			methods: {
+				postData() {
+					this.name.value = this.name.value + 1
+					// console.log(this.name)
+					// console.log('hello world',this.name)
+				},
+			}
+		})
+		// console.log('我是BF',window.BF)
+		// 判断是不是 VarEvery 的实例
+		// console.log(myVarEvery instanceof VarEvery)
+		// console.log(window)
+		// console.log(document)
+		// console.log(myVarEvery)
+		// console.log('用var',window.myVarEvery)
+		// console.dir(window)
+	</script>
+	<script>
+		// var newDom = document.createElement("div")
+		// newDom.id = "myCs"
+		// newDom.innerHTML = "你好"
+		// setTimeout(() => {
+		// 	document.body.appendChild(newDom)
+		// })
+		// console.log('<script><\/script>')
+		// document.write('<script>alert("hello")<\/script>')
+		setTimeout(() => {
+			// document.write('<script>alert("hello")<\/script>')
+		}, 2000)
+	</script>
+</html>
