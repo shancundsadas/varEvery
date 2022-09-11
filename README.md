@@ -1,0 +1,2 @@
+# varEvery
+Script shortcut package
